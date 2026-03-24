@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AX전략팀 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f6f3;
+    --border: #e9e9e7;
+    --text-primary: #1a1a1a;
+    --text-secondary: #787774;
+    --text-muted: #a8a8a5;
+    --accent: #2f2f2f;
+    --tag-bg: #f0eeec;
+    --hover-bg: #f7f6f3;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Layout */
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+
+  /* Cover */
+  .cover {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #f0eeec 0%, #e8e4df 50%, #ddd8d0 100%);
+    border-radius: 0;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 24px,
+      rgba(0,0,0,0.02) 24px,
+      rgba(0,0,0,0.02) 25px
+    );
+  }
+
+  /* Header */
+  .header {
+    padding: 32px 48px 0;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .emoji-icon {
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  /* Section title */
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 16px;
+  }
+
+  /* Properties block */
+  .properties {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 40px;
+  }
+
+  .property-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 0.88rem;
+    padding: 4px 0;
+  }
+
+  .property-key {
+    color: var(--text-muted);
+    min-width: 72px;
+    font-size: 0.82rem;
+  }
+
+  .property-value {
+    color: var(--text-secondary);
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  /* Work items */
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .work-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.12s ease;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+  }
+
+  .work-item:hover {
+    background: var(--hover-bg);
+    border-color: var(--border);
+  }
+
+  .work-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+    width: 24px;
+    text-align: center;
+  }
+
+  .work-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .work-title {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .work-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .work-badge {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+
+  /* Callout */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 32px;
+  }
+
+  .callout-icon { flex-shrink: 0; }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Fade-in animation */
+  .page { animation: fadeUp 0.4s ease both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .work-item {
+    opacity: 0;
+    animation: fadeUp 0.3s ease forwards;
+  }
+  .work-item:nth-child(1) { animation-delay: 0.05s; }
+  .work-item:nth-child(2) { animation-delay: 0.10s; }
+  .work-item:nth-child(3) { animation-delay: 0.15s; }
+  .work-item:nth-child(4) { animation-delay: 0.20s; }
+  .work-item:nth-child(5) { animation-delay: 0.25s; }
+  .work-item:nth-child(6) { animation-delay: 0.30s; }
+  .work-item:nth-child(7) { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<div class="cover"></div>
+
+<div class="header">
+  <span class="emoji-icon">🤖</span>
+  <h1>AX전략팀 포트폴리오</h1>
+  <p class="subtitle">AI Transformation Strategy · 업무 경험 정리</p>
+</div>
+
+<div class="page">
+
+  <hr class="divider" />
+
+  <div class="properties">
+    <div class="property-row">
+      <span class="property-key">소속</span>
+      <span class="property-value">AX전략팀</span>
+    </div>
+    <div class="property-row">
+      <span class="property-key">역할</span>
+      <span class="property-value">
+        <span class="tag">기획</span>
+        <span class="tag">모델링</span>
+        <span class="tag">영업지원</span>
+        <span class="tag">PM</span>
+      </span>
+    </div>
+    <div class="property-row">
+      <span class="property-key">도메인</span>
+      <span class="property-value">AI 솔루션 · 텍스트 분석</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <p class="section-label">Work Experience</p>
+
+  <div class="work-list">
+
+    <div class="work-item">
+      <span class="work-icon">📄</span>
+      <div class="work-content">
+        <div class="work-title">솔루션 소개서 작성</div>
+        <div class="work-desc">고객사 영업·제안에 활용되는 AI 솔루션 소개 문서 기획 및 제작</div>
+      </div>
+      <span class="work-badge">문서·기획</span>
+    </div>
+
+    <div class="work-item">
+      <span class="work-icon">📝</span>
+      <div class="work-content">
+        <div class="work-title">제안서 작성 (협업)</div>
+        <div class="work-desc">팀 협업 기반 제안서에서 담당 영역을 직접 기획·작성하여 수주 활동 지원</div>
+      </div>
+      <span class="work-badge">영업지원</span>
+    </div>
+
+    <div class="work-item">
+      <span class="work-icon">🧩</span>
+      <div class="work-content">
+        <div class="work-title">솔루션 기획</div>
+        <div class="work-desc">AI 솔루션의 화면·기능 설계부터 전체 서비스 기획까지 주도적으로 수행</div>
+      </div>
+      <span class="work-badge">서비스 기획</span>
+    </div>
+
+    <div class="work-item">
+      <span class="work-icon">🖥️</span>
+      <div class="work-content">
+        <div class="work-title">시연 / 데모 준비</div>
+        <div class="work-desc">고객사 대상 솔루션 시연을 위한 데모 환경 구성 및 발표 준비</div>
+      </div>
+      <span class="work-badge">고객 대응</span>
+    </div>
+
+    <div class="work-item">
+      <span class="work-icon">🔬</span>
+      <div class="work-content">
+        <div class="work-title">텍스트 분석 모델링</div>
+        <div class="work-desc">자사 솔루션 고도화를 위한 텍스트 분석 모델 개발 및 실험 수행</div>
+      </div>
+      <span class="work-badge">AI · 모델링</span>
+    </div>
+
+    <div class="work-item">
+      <span class="work-icon">🎪</span>
+      <div class="work-content">
+        <div class="work-title">행사 준비 및 부스 운영</div>
+        <div class="work-desc">회사 홍보 행사 기획·준비 및 현장 부스 운영을 통한 대외 브랜딩 지원</div>
+      </div>
+      <span class="work-badge">브랜딩</span>
+    </div>
+
+    <div class="work-item">
+      <span class="work-icon">🗂️</span>
+      <div class="work-content">
+        <div class="work-title">PM 서포트 (현장 프로젝트)</div>
+        <div class="work-desc">고객사 파견 프로젝트에서 PM 업무를 보조하며 프로젝트 전반 운영 지원</div>
+      </div>
+      <span class="work-badge">PM</span>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">💡</span>
+    <span>솔루션 기획부터 모델링, 영업 지원, 현장 프로젝트까지 — AI 솔루션의 전 사이클을 폭넓게 경험했습니다.</span>
+  </div>
+
+  <div class="footer">
+    <span>AX전략팀</span>
+    <span>Portfolio · 2025</span>
+  </div>
+
+</div>
+</body>
+</html>
